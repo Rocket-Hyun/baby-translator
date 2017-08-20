@@ -1,10 +1,18 @@
+@import url('https://cdn.rawgit.com/singihae/Webfonts/master/style.css');
+.jua {font-family:'BM JUA','배달의민족 주아',sans-serif;}
+.hana{font-family:'BM HANNA','배달의민족 한나', sans-serif; }
+
 body {
   margin:0;
 }
 
 .camview {
   width: 100%;
-  height: 100vh;
+  /*height: 100vh;*/
+}
+
+.videowrap {
+  position: relative;
 }
 
 .ballon {
@@ -14,6 +22,19 @@ body {
   height: 100px;
   position: absolute;
   border-radius: 50px;
+}
+
+.statewrap{
+  position: absolute;
+  width:800px;
+  bottom:0;
+}
+
+.state{
+  text-align: center;
+  background-color: white;
+  font-size: 2em;
+  color: #ea4468;
 }
 
 #video {
