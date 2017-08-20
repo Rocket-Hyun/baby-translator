@@ -7,13 +7,24 @@
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel=stylesheet type=text/css href="../static/style.css">
+  <link href="https://cdn.rawgit.com/singihae/Webfonts/master/style.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 <div class="camview">
-  <div class="ballon">
+  <!-- <div class="ballon">
+  </div> -->
+  <div class="videowrap">
+    <div class="statewrap">
+      <h3 class="state jua">
+        Current State: HUNGRY
+      </h3>
+    </div>
+    <video id="video" width="800" height="600" autoplay></video>
   </div>
-  <video id="video" width="400" height="300" autoplay></video>
-  <canvas id="canvas" width="400" height="300"></canvas>
+  <div class="canvaswrap">
+    <canvas id="canvas" width="800" height="600"></canvas>
+  </div>
 </div>
 
 <button id="snap">Snap Photo</button>
@@ -47,16 +58,17 @@
 
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function() {
-    	context.drawImage(video, 0, 0, 400, 300);
+    	context.drawImage(video, 0, 0, 800, 600);
     });
 
     function checkImg() {
-    	context.drawImage(video, 0, 0, 400, 300);
+    	context.drawImage(video, 0, 0, 800, 600);
       var canvas = document.getElementById("canvas");
       var img    = canvas.toDataURL("image/png");
       // console.log(img);
 
       // only returns endoded code
+      // console.log(img);
       console.log(img.split(",")[1]);
     };
 
@@ -67,16 +79,20 @@
       };
 
       $.ajax({
-        url: "https://api.chui.ai/v1/enroll",
+        url: "https://api.chui.ai/v1/identify",
         method: "POST",
+        headers: {
+          "x-api-key": "Fhpm5sx61t7IsUFt3bYRH9cefkPYDAxG5U8UZfJJ",
+          "Content-Type": "application/json"
+        },
         data: imgData
       }).done(function(data) {
         console.log(data);
       });
     }
 
-    // setTimeout(checkImg, 2000);
-    setTimeout(getStatus, 2000);
+    setTimeout(checkImg, 2000);
+    // setTimeout(getStatus, 2000);
     // setInterval(checkImg, 5000);
 
 
