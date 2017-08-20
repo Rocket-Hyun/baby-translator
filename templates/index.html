@@ -6,17 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+  <link rel=stylesheet type=text/css href="../static/style.css">
 </head>
 <body>
-  <div class="camview">
-    <div class="ballon">
-    </div>
-    <video id="video" width="300" height="400" autoplay></video>
-    <canvas id="canvas" width="300" height="400"></canvas>
+<div class="camview">
+  <div class="ballon">
   </div>
+  <video id="video" width="400" height="300" autoplay></video>
+  <canvas id="canvas" width="400" height="300"></canvas>
+</div>
 
-  <button id="snap">Snap Photo</button>
+<button id="snap">Snap Photo</button>
 <script>
 (function(){
     var canvas = document.getElementById('canvas'),
@@ -47,6 +47,17 @@
     document.getElementById("snap").addEventListener("click", function() {
     	context.drawImage(video, 0, 0, 400, 300);
     });
+
+    function checkImg() {
+    	context.drawImage(video, 0, 0, 400, 300);
+      var canvas = document.getElementById("canvas");
+      var img    = canvas.toDataURL("image/png");
+      console.log(img);
+    };
+
+    setTimeout(checkImg, 5000);
+    // setInterval(checkImg, 5000);
+
 
 })();
 </script>
