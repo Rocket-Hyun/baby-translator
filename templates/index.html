@@ -17,13 +17,13 @@
   <div class="videowrap">
     <div class="statewrap">
       <h3 class="state jua">
-        Current State: HUNGRY
+        Current State: <span id="statewords">NORMAL</span>
       </h3>
     </div>
-    <video id="video" width="800" height="600" autoplay></video>
+    <video id="video" width="1600" height="1200" autoplay></video>
   </div>
   <div class="canvaswrap">
-    <canvas id="canvas" width="800" height="600"></canvas>
+    <canvas id="canvas" width="1600" height="1200"></canvas>
   </div>
 </div>
 
@@ -58,11 +58,11 @@
 
     // Trigger photo take
     document.getElementById("snap").addEventListener("click", function() {
-    	context.drawImage(video, 0, 0, 800, 600);
+    	context.drawImage(video, 0, 0, 1600, 1200);
     });
 
     function checkImg() {
-    	context.drawImage(video, 0, 0, 800, 600);
+    	context.drawImage(video, 0, 0, 1600, 1200);
       var canvas = document.getElementById("canvas");
       var img    = canvas.toDataURL("image/png");
       // console.log(img);
@@ -88,12 +88,24 @@
         data: imgData
       }).done(function(data) {
         console.log(data);
+        // return data;
       });
     }
 
-    setTimeout(checkImg, 2000);
+    function changeStatus() {
+      var myArray = ["HUNGRY", "PAIN", "TIRED", "BATHROOM", "HAPPY", "NORMAL"]
+      var statusText = myArray[Math.floor(Math.random() * myArray.length)];
+      $("#statewords").text(statusText);
+    }
+
+    function allFunction() {
+      checkImg();
+      changeStatus();
+    }
+
+    // setTimeout(allFunction, 3000);
     // setTimeout(getStatus, 2000);
-    // setInterval(checkImg, 5000);
+    setInterval(allFunction, 2000);
 
 
 })();
